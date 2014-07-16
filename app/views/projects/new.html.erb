@@ -1,2 +1,13 @@
-<h1>Projects#new</h1>
-<p>Find me in app/views/projects/new.html.erb</p>
+<h1>New Project</h1>
+
+<%= form_for @project, :method => 'POST' do |f| %>
+
+	<%= f.text_field :name, placeholder: "Project Title" %>
+	<%= f.text_area :description, placeholder: "Project Description" %>
+	<%= f.select :category, options_for_select(["Tech", "Non-Tech"]) %>
+	<%= f.number_field :goal, placeholder: "Goal" %>
+	<%= f.date_field :end_date %>
+
+	<%= f.submit 'Submit', class:'button tiny' %>
+	
+<% end %>
