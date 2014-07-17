@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_filter :require_login, only: [:create, :destroy, :update]
+
   def index
     @projects = Project.all
   end

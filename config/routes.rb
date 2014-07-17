@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
+  root to: "projects#index"
 
-  get 'users/new'
-
-  get 'pledges/show'
-
-  get 'pledges/create'
-
-  resources :users
+  get 'login' => 'user_sessions#new', :as => :login
+  post 'logout' => 'user_sessions#destroy', :as => :logout
+  resources :user_sessions, :only => [:new, :create, :destroy]
+  resources :users, :only => [:new, :create]
   resources :projects do
     resources :rewards, :only => [:new, :create, :destroy, :update] do
       resources :pledges, :only => [:new, :create, :show]
