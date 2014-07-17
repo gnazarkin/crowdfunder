@@ -8,6 +8,7 @@ class PledgesController < ApplicationController
   	@pledge = @reward.pledges.build(reward_id: @reward.id)
 
   	if @pledge.save
+  		@reward.project.update_funded_amount
   		redirect_to @reward_project
   	else
   		render :new
