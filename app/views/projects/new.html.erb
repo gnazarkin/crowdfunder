@@ -3,6 +3,7 @@
 <%= form_for @project, :method => 'post' do |f| %>
 
 	<%= f.text_field :name, placeholder: "Name" %>
+	<%= f.file_field :image %>
 	<%= f.text_area :description, placeholder: "Project Description" %>
 	<%= f.select :category, options_for_select(["Tech", "Non-Tech"]) %>
 	<%= f.number_field :goal, placeholder: "Goal" %>
