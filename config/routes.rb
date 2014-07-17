@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'pledges/show'
+
+  get 'pledges/create'
+
   resources :users
   resources :projects do
     resources :rewards, :only => [:new, :create, :destroy, :update] do

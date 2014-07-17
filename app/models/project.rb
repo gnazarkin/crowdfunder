@@ -3,6 +3,11 @@ class Project < ActiveRecord::Base
 	has_many :pledges
 	has_many :rewards
 
-	validates :title, :description, :goal, :end_date, presence: :true
-	
+	validates :name, :description, :goal, :end_date, presence: :true
+	accepts_nested_attributes_for :rewards, :reject_if => :all_blank, :allow_destroy => true
+
+	def update_funded_amount
+		self.funded_amount = self.pledges.sum(:amount)
+	end
+
 end

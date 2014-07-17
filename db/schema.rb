@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20140716182021) do
     t.integer  "goal"
     t.datetime "end_date"
     t.string   "category"
-    t.integer  "funded_amount"
+    t.integer  "funded_amount", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

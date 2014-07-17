@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.new
+    @projects = Project.all
   end
 
   def show
@@ -14,6 +14,12 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+
+    if @project.save
+      redirect_to @project
+    else
+      render :new
+    end
   end
 
   def update
@@ -29,6 +35,6 @@ class ProjectsController < ApplicationController
 
   private
   def project_params
-    params.require(:project).permit(:title, :description, :goal, :end_date)
+    params.require(:project).permit(:name, :description, :end_date, :goal, rewards_attributes: [:amount, :description, :_destroy])
   end
 end
