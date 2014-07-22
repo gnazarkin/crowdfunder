@@ -6,9 +6,5 @@ class Project < ActiveRecord::Base
 
 	validates :name, :description, :goal, :end_date, presence: :true
 	accepts_nested_attributes_for :rewards, :reject_if => :all_blank, :allow_destroy => true
-
-	def update_funded_amount
-		self.funded_amount = self.pledges.sum(:amount)
-	end
-
+	acts_as_commentable
 end

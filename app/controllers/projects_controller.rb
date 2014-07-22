@@ -7,6 +7,13 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @rewards = @project.rewards
+    commentable = Project.create
+
+    comment = commentable.comments.create
+    comment.title = "First comment."
+    comment.comment = "This is the first comment."
+    comment.save
   end
 
   def new
@@ -33,10 +40,11 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
+    redirect_to root
   end
 
   private
   def project_params
-    params.require(:project).permit(:name, :description, :end_date, :goal, rewards_attributes: [:amount, :description, :_destroy])
+    params.require(:project).permit(:name, :description, :image, :end_date, :goal, rewards_attributes: [:amount, :description, :_destroy])
   end
 end

@@ -1,1 +1,12 @@
 <h1>Projects</h1>
+
+
+<% @projects.each do |project| %>
+	
+		<h4><%= link_to project.name, project_path(project.id) %></h4>
+		<%= image_tag project.image.thumb.url %>
+		<p><strong>Goal: <%= number_to_currency(project.goal) %></strong></p>
+		<p> Current Funding: <%=number_to_currency(project.funded_amount) %></p>
+		<p>End Date: <%= project.end_date %></p>
+	
+<% end %>

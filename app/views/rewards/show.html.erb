@@ -1,2 +1,4 @@
-<h1>Rewards#show</h1>
-<p>Find me in app/views/rewards/show.html.erb</p>
+<h1>Checkout</h1>
+<%= number_to_currency(@reward.amount) %>
+<%= @reward.description %>
+<p><%= link_to "Select Reward", project_reward_pledges_path(@reward.project, @reward), method: 'post',class: 'button tiny' %></p>

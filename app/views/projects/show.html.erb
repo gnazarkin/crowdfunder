@@ -1,7 +1,23 @@
+
 <h1><%= @project.name %></h1>
+<%= if current_user %>
+	<%= button_to "Delete Project", @project.destroy %>
+<%= else %>
+
+<% end %>
+
 <%= image_tag @project.image.url %>
-<p>Goal: <%= @project.goal %></p>
-<p>Funded Amount: <%= @project.funded_amount %></p>
+<p>Description: <%= @project.description %></p>
+<p>Goal: <%= number_to_currency(@project.goal) %></p>
+<p>Funded Amount: <%= number_to_currency(@project.funded_amount) %></p>
 <p>Description: <%= @project.description %></p>
 
-
+<h3>Rewards</h3>
+<% @rewards.each do |reward| %>
+	<div class='reward'>
+		<p><%= reward.name %></p>
+		<p>Backers: <%= reward.pledges.count %></p>
+		<p><%= number_to_currency(reward.amount) %></p>
+		<p><%= reward.description %></p>
+		<p><%= link_to "View Reward", project_reward_path(@project, reward) %></p>
+<% end %>
